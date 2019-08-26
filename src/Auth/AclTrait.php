@@ -140,6 +140,10 @@ trait AclTrait {
 	 * @throws \Cake\Core\Exception\Exception
 	 */
 	protected function _check(array $user, array $params) {
+		if($params && $params['action']) {
+		    $params['action'] = lcfirst(\Cake\Utility\Inflector::camelize($params['action'], '-'));
+		}
+		
 		if ($this->getConfig('includeAuthentication') && $this->_isPublic($params)) {
 			return true;
 		}
