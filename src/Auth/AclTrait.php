@@ -340,6 +340,8 @@ trait AclTrait {
 	 */
 	protected function _constructIniKey($params) {
 		$res = $params['controller'];
+		$res = \Cake\Utility\Inflector::camelize($res, '-');
+		
 		if (!empty($params['prefix'])) {
 			$res = $params['prefix'] . "/$res";
 		}
